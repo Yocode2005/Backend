@@ -43,5 +43,5 @@ const videoSchema = new Schema(
 )
 
 
-videoSchema.plugin(mongooseAggregatePaginate)
+videoSchema.plugin(mongooseAggregatePaginate) // it will add pagination methods to aggregate queries
 export const Video = mongoose.model("Video", videoSchema)
