@@ -55,11 +55,11 @@ const userSchema = new Schema(
 );
 
 // Hash password  just before saving the user
-userSchema.pre("save", async function (next) {// do not use arrow function here to access 'this'
-    if(!this.isModified("password")) return next();
+userSchema.pre("save", async function () {// do not use arrow function here to access 'this'
+    if(!this.isModified("password")) return ;
 
     this.password = await bcrypt.hash(this.password, 10) // salt rounds = 10
-    next()
+  
 })
 
 // Instance method to compare passwords so when user logs in we can verifying password

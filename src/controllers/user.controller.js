@@ -20,14 +20,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
 
     const {fullName, email, username, password } = req.body
-    console.log("email: ", email);
+    // console.log("email: ", email);
 
     // if(fullName ===""){
     //     throw new ApiError(400, "Full name is required")
     // }
 
     if (
-        [fullName, email, username, password].some((field) => field?.trim() === "")
+        [fullName, email, username, password].some((field) => field?.trim() === "") //means agr koi bhi field empty hoga to ye true return karega
     ) {
         throw new ApiError(400, "All fields are required")
     }
@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
     //console.log(req.files);
 
     
-    const avatarLocalPath = req.files?.avatar[0]?.path;
+    const avatarLocalPath = req.files?.avatar[0]?.path; // means if req.files is defined, and avatar is defined in req.files, then get the path of the first file in the avatar array
     //const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
     let coverImageLocalPath;
@@ -72,7 +72,7 @@ const registerUser = asyncHandler(async (req, res) => {
     })
 
     const createdUser = await User.findById(user._id).select(
-        "-password -refreshToken"
+        "-password -refreshToken" // remove password and refresh token from response
     )
 
     if (!createdUser) {
