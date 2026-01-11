@@ -1,5 +1,5 @@
 // require('dotenv').config({path: './env'})
-import dotenv from "dotenv"
+import dotenv from "dotenv" // this file is used taki  jo environment varibales hai vo jldi se available ho jay sari jaga
 import connectDB from "./db/index.js";
 import {app} from "./app.js";
 dotenv.config({
